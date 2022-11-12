@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        tr:hover {
+            background: greenyellow!important ;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <tr style="background: rgb(15, 189, 195);" >      
+            <td><input type="checkbox" value="" onclick="checkAll()"> </td>
+            <td>Họ tên</td>
+            <td>Ngày sinh</td>
+            <td>Giới tính</td>
+        </tr>
+        <tr style="background: rgb(170, 176, 176);" onclick="clickRow(this);check(); checkedAll()">
+            <td> <input class="checkbox" type="checkbox" value="" onclick="check(); checkedAll()"> </td>
+            <td>Hoàng Thị Thảo</td>
+            <td>23/06/1900</td>
+            <td>Nữ</td>
+        </tr>
+        <tr style="background: rgb(174, 101, 222);" onclick="clickRow(this);check(); checkedAll()">
+            <td><input class="checkbox" type="checkbox" value="" onclick="check(); checkedAll()"> </td>
+            <td>Ngô Mạnh Quân</td>
+            <td>14/04/1992</td>
+            <td>Nam</td>
+        </tr>
+        <tr style="background: rgb(170, 176, 176);" onclick="clickRow(this);check(); checkedAll()">
+            <td><input class="checkbox" type="checkbox" value="" onclick="check(); checkedAll()"> </td>
+            <td>Nguyễn Thanh Tùng</td>
+            <td>27/09/1991</td>
+            <td>Nam</td>
+        </tr>
+        <tr style="background: rgb(174, 101, 222);" onclick="clickRow(this);check(); checkedAll()">
+            <td><input  class="checkbox" type="checkbox" value="" onclick="check(); checkedAll()"> </td>
+            <td>Hoàng Thị Ngân</td>
+            <td>12/12/1992</td>
+            <td>Nữ</td>
+        </tr>
+    </table>
+    <script>
+        
+        var checkBox = document.getElementsByTagName("input");
+        var row = document.getElementsByTagName("tr");
+        var evenColor = "rgb(174, 101, 222)";
+        var oddColor = "rgb(170, 176, 176)";
+        function clickRow(x){
+            if(checkBox[x.rowIndex].checked == true)
+                checkBox[x.rowIndex].checked = false;
+            else
+            checkBox[x.rowIndex].checked = true;
+            
+        }
+        function checkAll(){
+            if(checkBox[0].checked == true){
+                for (let index = 1; index < checkBox.length; index++) {
+                    checkBox[index].checked = true;
+                    row[index].style.background = "yellow";
+                }
+            }
+            else{
+                for (let index = 1; index < checkBox.length; index++) {
+                    checkBox[index].checked = false;
+                    if(index%2 ==0)
+                    row[index].style.background = evenColor;
+                    else
+                    row[index].style.background = oddColor;
+                }
+            }
+        }
+        function check() {
+            for (let index = 1; index < checkBox.length; index++) {
+                if(checkBox[index].checked ==true){
+                    row[index].style.background = "yellow";
+                }
+                else{
+                    if(index%2 ==0)
+                    row[index].style.background = evenColor;
+                    else
+                    row[index].style.background = oddColor;
+                }    
+            }
+        }
+        function checkedAll() {
+            let count =0;
+            for (let index = 1; index < checkBox.length; index++) {
+                if(checkBox[index].checked == true){
+                    count ++;
+                }
+            }
+            if(count ==4){
+                checkBox[0].checked = true;
+            }
+            else
+                checkBox[0].checked = false;
+        }setInterval(checkedAll, 1000);
+        
+        
+    </script>
+</body>
+</html>
